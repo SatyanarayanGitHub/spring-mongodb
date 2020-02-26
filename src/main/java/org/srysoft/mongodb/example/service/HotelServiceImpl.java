@@ -17,13 +17,29 @@ public class HotelServiceImpl implements HotelService {
 	private HotelRepository hotelRepository;
 
 	public HotelServiceImpl(HotelRepository hotelRepository) {
-		super();
 		this.hotelRepository = hotelRepository;
 	}
 
 	@Override
 	public List<Hotel> getAllHotels() {
-		return hotelRepository.findAll();
+		return this.hotelRepository.findAll();
+	}
+
+	@Override
+	public void insertHotel(Hotel hotel) {
+		this.hotelRepository.insert(hotel);
+
+	}
+
+	@Override
+	public void updateHotel(Hotel hotel) {
+		this.hotelRepository.save(hotel);
+
+	}
+
+	@Override
+	public void deleteHotel(String id) {
+		this.hotelRepository.deleteById(id);
 	}
 
 }
