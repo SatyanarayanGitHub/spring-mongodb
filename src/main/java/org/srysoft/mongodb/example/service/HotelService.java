@@ -19,4 +19,8 @@ public interface HotelService {
 
 	public void deleteHotel(String id);
 
+	public Hotel findHotelById(String id);
+	
+	public List<Hotel> findHotelByPricePerNightLessThan(int max);
+
 }

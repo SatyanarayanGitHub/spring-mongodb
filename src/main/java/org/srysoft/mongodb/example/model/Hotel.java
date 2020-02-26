@@ -23,7 +23,7 @@ public class Hotel {
 	private Address address;
 	private List<Review> reviews;
 
-	protected Hotel() {
+	public Hotel() {
 		this.reviews = new ArrayList<>();
 	}
 
