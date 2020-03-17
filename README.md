@@ -12,7 +12,7 @@ Spring Boot + Mongo DB
 - Fixed
 
 ```sh
-Example - Add in application.properties file
+Example - Add below line in application.properties file
 
 spring.data.mongodb.uri=mongodb://hotel_demo_dev:hotel_demo%40123@localhost:27017/hotel-demo-data
 ```
