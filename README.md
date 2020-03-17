@@ -6,4 +6,4 @@ Spring Boot + Mongo DB
 ## Issues
 1. lombok library does not support in Eclipse
 - FIXED
-2. How to Monogo DB with username and password fields. At the time of monogo db setup, I didn't provide username and password.
+2. How to use Monogo DB url with username and password fields. At the moment, monogo db url without username and password.
