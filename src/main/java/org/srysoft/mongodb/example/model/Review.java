@@ -1,9 +1,8 @@
 package org.srysoft.mongodb.example.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * 
@@ -11,10 +10,9 @@ import lombok.Setter;
  *
  */
 
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Review {
 	private String userName;
 	private int rating;
