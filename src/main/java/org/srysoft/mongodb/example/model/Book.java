@@ -3,9 +3,6 @@ package org.srysoft.mongodb.example.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//@Getter
-//@Setter
-//@ToString
 @Document(collection = "Book")
 public class Book {
 
@@ -51,9 +48,9 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", isbn=" + isbn + "]";
-	}*/
+	}
 
 }

@@ -1,6 +1,8 @@
 package org.srysoft.mongodb.example.resource;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,15 +57,27 @@ public class HotelController {
 		List<Hotel> hotels = this.hotelService.findHotelByPricePerNightLessThan(maxPrice);
 		return hotels;
 	}
-	
+
+	//Find Documents By A Field Value in a Sub-Document - Using mongoTemplate
 	@GetMapping("/country/{country}")
-	public List<Hotel> getHotelByCountry(@PathVariable("country") String country){
+	public List<Hotel> getHotelByCountry(@PathVariable("country") String country) {
 		System.out.println("Controller...");
-		
+
 		List<Hotel> hotels = this.hotelService.findHotelByCountry(country);
-		
+
 		return hotels;
 	}
-	
+
+	//Find Documents By A Field Value in a Sub-Document - Using HotelRepository
+	@GetMapping("/address/{country}")
+	public List<Hotel> getHotelFilterFromSubDocument(@PathVariable("country") String country) {
+		return this.hotelService.findAllByAddressCountry(country).stream().collect(Collectors.toList());
+	}
+
+	//Find Documents By A Field Value in a Sub-Document - Using Query annotation at Repository
+	@GetMapping("/custom/{country}")
+	public List<Hotel> getHotelFilterFromSubDocumentQuery(@PathVariable("country") String country) {
+		return this.hotelService.customHotelAddressCountry(country).stream().collect(Collectors.toList());
+	}
 
 }

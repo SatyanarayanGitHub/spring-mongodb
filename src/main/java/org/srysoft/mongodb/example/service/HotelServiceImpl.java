@@ -1,5 +1,6 @@
 package org.srysoft.mongodb.example.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,6 +80,16 @@ public class HotelServiceImpl implements HotelService {
 		hotels.stream().forEach(hotel -> System.out.println(hotel));
 		
 		return hotels;
+	}
+
+	@Override
+	public Collection<Hotel> findAllByAddressCountry(String country) {
+		return this.hotelRepository.findAllByAddressCountry(country);
+	}
+
+	@Override
+	public Collection<Hotel> customHotelAddressCountry(String country) {
+		return this.hotelRepository.customHotelAddressCountry(country);
 	}
 
 	
