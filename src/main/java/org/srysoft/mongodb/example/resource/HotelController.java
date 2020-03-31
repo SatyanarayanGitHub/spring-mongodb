@@ -1,7 +1,7 @@
 package org.srysoft.mongodb.example.resource;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -78,6 +78,13 @@ public class HotelController {
 	@GetMapping("/custom/{country}")
 	public List<Hotel> getHotelFilterFromSubDocumentQuery(@PathVariable("country") String country) {
 		return this.hotelService.customHotelAddressCountry(country).stream().collect(Collectors.toList());
+	}
+	
+	
+	//Find Documents By A Field Value in an Array
+	@GetMapping("/greatReviews")
+	public Collection<Hotel> getHotelWithFiveReview(){
+		return this.hotelService.getHotelWithFiveReview();
 	}
 
 }

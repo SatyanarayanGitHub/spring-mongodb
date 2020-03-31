@@ -20,9 +20,9 @@ import org.srysoft.mongodb.example.repository.HotelRepository;
 @Service
 public class HotelServiceImpl implements HotelService {
 
-	 @Autowired
-	 private MongoTemplate mongoTemplate;
-	 
+	@Autowired
+	private MongoTemplate mongoTemplate;
+
 	private HotelRepository hotelRepository;
 
 	public HotelServiceImpl(HotelRepository hotelRepository) {
@@ -30,7 +30,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<Hotel> getAllHotels() {
+	public List<Hotel> getAllHotels() {		
 		return this.hotelRepository.findAll();
 	}
 
@@ -67,18 +67,17 @@ public class HotelServiceImpl implements HotelService {
 		return this.hotelRepository.findByPricePerNightLessThan(max);
 	}
 
-	
 	@Override
 	public List<Hotel> findHotelByCountry(String country) {
 		System.out.println("Service call...");
-		Query query = new Query();		
-		query.addCriteria(Criteria.where("address.country").is(country));		
-		
+		Query query = new Query();
+		query.addCriteria(Criteria.where("address.country").is(country));
+
 		List<Hotel> hotels = mongoTemplate.find(query, Hotel.class);
-		
+
 		System.out.println("hotel size : " + hotels.size());
 		hotels.stream().forEach(hotel -> System.out.println(hotel));
-		
+
 		return hotels;
 	}
 
@@ -92,5 +91,9 @@ public class HotelServiceImpl implements HotelService {
 		return this.hotelRepository.customHotelAddressCountry(country);
 	}
 
-	
+	@Override
+	public Collection<Hotel> getHotelWithFiveReview() {
+		return this.hotelRepository.findAllByFiveReview();
+	}
+
 }

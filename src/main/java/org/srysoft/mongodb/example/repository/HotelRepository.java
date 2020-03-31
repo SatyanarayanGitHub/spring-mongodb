@@ -25,5 +25,8 @@ public interface HotelRepository extends MongoRepository<Hotel, String> {
 
 	@Query("{'address.country':?0}")
 	Collection<Hotel> customHotelAddressCountry(String country);
+	
+	@Query("{'reviews.rating' : {$eq : 5}}")
+	Collection<Hotel> findAllByFiveReview();
 
 }
