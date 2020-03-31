@@ -22,5 +22,7 @@ public interface HotelService {
 	public Hotel findHotelById(String id);
 	
 	public List<Hotel> findHotelByPricePerNightLessThan(int max);
+		
+	public List<Hotel> findHotelByCountry(String country);
 
 }

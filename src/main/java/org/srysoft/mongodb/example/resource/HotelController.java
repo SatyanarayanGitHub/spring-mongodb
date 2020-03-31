@@ -55,5 +55,15 @@ public class HotelController {
 		List<Hotel> hotels = this.hotelService.findHotelByPricePerNightLessThan(maxPrice);
 		return hotels;
 	}
+	
+	@GetMapping("/country/{country}")
+	public List<Hotel> getHotelByCountry(@PathVariable("country") String country){
+		System.out.println("Controller...");
+		
+		List<Hotel> hotels = this.hotelService.findHotelByCountry(country);
+		
+		return hotels;
+	}
+	
 
 }

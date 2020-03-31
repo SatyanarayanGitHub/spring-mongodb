@@ -3,6 +3,10 @@ package org.srysoft.mongodb.example.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.srysoft.mongodb.example.model.Hotel;
 import org.srysoft.mongodb.example.repository.HotelRepository;
@@ -15,6 +19,9 @@ import org.srysoft.mongodb.example.repository.HotelRepository;
 @Service
 public class HotelServiceImpl implements HotelService {
 
+	 @Autowired
+	 private MongoTemplate mongoTemplate;
+	 
 	private HotelRepository hotelRepository;
 
 	public HotelServiceImpl(HotelRepository hotelRepository) {
@@ -59,4 +66,20 @@ public class HotelServiceImpl implements HotelService {
 		return this.hotelRepository.findByPricePerNightLessThan(max);
 	}
 
+	
+	@Override
+	public List<Hotel> findHotelByCountry(String country) {
+		System.out.println("Service call...");
+		Query query = new Query();		
+		query.addCriteria(Criteria.where("address.country").is(country));		
+		
+		List<Hotel> hotels = mongoTemplate.find(query, Hotel.class);
+		
+		System.out.println("hotel size : " + hotels.size());
+		hotels.stream().forEach(hotel -> System.out.println(hotel));
+		
+		return hotels;
+	}
+
+	
 }
